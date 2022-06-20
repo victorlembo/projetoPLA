@@ -12,13 +12,13 @@ from pulp import *
 prob = LpProblem("Maximiza-Lucro", LpMaximize)
 
 # Somente aceitaveis valores maiores que zero para as variaveis
-x1 = LpVariable("x1", 0, None)
-x2 = LpVariable("x2", 0, None)
-x3 = LpVariable("x3", 0, None)
-x4 = LpVariable("x4", 0, None)
-x5 = LpVariable("x5", 0, None)
-x6 = LpVariable("x6", 0, None)
-x7 = LpVariable("x7", 0, None)
+x1 = LpVariable("x1", 900, 2000)
+x2 = LpVariable("x2", 100, 400)
+x3 = LpVariable("x3", 900, 2000)
+x4 = LpVariable("x4", 500, 1200)
+x5 = LpVariable("x5", 650, 1500)
+x6 = LpVariable("x6", 200, 600)
+x7 = LpVariable("x7", 650, 1500)
 
 # Funcao Objetiva
 prob += 0.749 * x1 + 0.5005 * x2 + 0.84 * x3 + 2.023 * x4 + 0.9275 * x5 + 0.42 * x6 + 6.8075 * x7
@@ -28,34 +28,6 @@ prob += 2.14 * x1 + 1.43 * x2 + 2.4 * x3 + 5.78 * x4 + 2.65 * x5 + 1.20 * x6 + 1
 
 # Restricao de volume menor ou igual a 14m³
 prob += 0.00574 * x1 + 0.00553 * x2 + 0.00108 * x3 + 0.00174 * x4 + 0.00156 * x5 + 0.00143 * x6 + 0.0063 * x7 <= 14
-
-# Restricao de quantidade minima e maxima de x1
-prob += x1 >= 900
-prob += x1 <= 2000
-
-# Restricao de quantidade minima e maxima de x2
-prob += x2 >= 100
-prob += x2 <= 400
-
-# Restricao de quantidade minima e maxima de x3
-prob += x3 >= 900
-prob += x3 <= 2000
-
-# Restricao de quantidade minima e maxima de x4
-prob += x4 >= 500
-prob += x4 <= 1200
-
-# Restricao de quantidade minima e maxima de x5
-prob += x5 >= 650
-prob += x5 <= 1500
-
-# Restricao de quantidade minima e maxima de x6
-prob += x6 >= 200
-prob += x6 <= 600
-
-# Restricao de quantidade minima e maxima de x7
-prob += x7 >= 650
-prob += x7 <= 1500
 
 # Resolucao do problema
 GLPK().solve(prob)
